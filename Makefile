@@ -1,10 +1,10 @@
 .PHONY: install collectstatic migrate
 
 install:
-	uv pip install
+	poetry install
 
 collectstatic:
-	pyrhon3 manage.py collectstatic --no-input
+	python3 manage.py collectstatic --no-input
 
 migrate:
 	python3 manage.py migrate
