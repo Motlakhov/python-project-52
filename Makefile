@@ -4,10 +4,10 @@ install:
 	uv pip install
 
 collectstatic:
-    pyrhon3 manage.py collectstatic --no-input
+	pyrhon3 manage.py collectstatic --no-input
 
 migrate:
-    python3 manage.py migrate
+	python3 manage.py migrate
 
 build:
 	./build.sh
