@@ -1,16 +1,16 @@
-.PHONY: install collectstatic migrate
+.PHONY: install collectstatic migrate build render-start
 
 install:
 	poetry install
 
 collectstatic:
-	python3 manage.py collectstatic --no-input
+	poetry run python manage.py collectstatic --no-input
 
 migrate:
-	python3 manage.py migrate
+	poetry run python manage.py migrate
 
 build:
 	./build.sh
 
 render-start:
-	gunicorn task_manager.wsgi
+	poetry run gunicorn task_manager.wsgi
