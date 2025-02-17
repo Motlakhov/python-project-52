@@ -1,7 +1,7 @@
 .PHONY: install collectstatic migrate build render-start
 
 install:
-	uv pip install .
+	uv pip install . --python=/opt/render/project/src/.render/bin/python3
 
 collectstatic:
 	python manage.py collectstatic --noinput
