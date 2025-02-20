@@ -4,4 +4,17 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "dj-database-url>=2.3.0",
+    "django>=5.1.6",
+    "django-bootstrap5>=24.3",
+    "flake8>=7.1.2",
+    "gunicorn>=23.0.0",
+    "python-dotenv>=1.0.1",
+]
+
+[tool.flake8]
+exclude = [
+    "migrations",
+    "settings.py"
+]
