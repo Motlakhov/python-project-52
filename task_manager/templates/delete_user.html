@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+    {% block heading %}
+    <h1 class="my-4"> 
+    Удаление пользователя
+    </h1>
+    {% endblock %}
+
+    {% block content %}
+    <p>Вы уверены, что хотите удалить Дмитрий Мотлахов?</p>
+    <form method="post">
+        <input type="hidden" name="csrfmiddlewaretoken" value="vnpfe0F2iHxRxVFq6HSFISzvsXKGZHdU59x79sQ9f4h28lZVn0M2ZiBnRtWPavK6">
+        <input class="btn btn-danger" type="submit" value="Да, удалить">
+    </form>
+    {% endblock %}

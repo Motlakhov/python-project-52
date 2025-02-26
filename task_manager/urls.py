@@ -17,8 +17,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from django.contrib.auth.views import LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index)
+    path('', views.index, name='index'),
+    
+    # Маршрут для списка пользователей
+    path('users/', views.UsersList.as_view(), name='user-list'),
+
+    # Маршрут для создания пользователя
+    path('users/create/', views.CreateUser.as_view(), name='user-create'),
+    
+    # Маршрут для редактирования пользователя
+    path('users/<int:pk>/update/', views.UserUpdate.as_view(), name='user-update'),
+    
+    # Маршрут для удаления пользователя
+    path('users/<int:pk>/delete/', views.UserDelete.as_view(), name='user-delete'),
+    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', views.CustomLogoutView.as_view(), name='logout'),
 ]
