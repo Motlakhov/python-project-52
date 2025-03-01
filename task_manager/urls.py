@@ -24,7 +24,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     
     # Маршрут для списка пользователей
-    path('users/', include('users.urls')),
+    path('users/', include('task_manager.users.urls')),
 
     # # Маршрут для создания пользователя
     # path('users/create/', views.CreateUser.as_view(), name='user-create'),

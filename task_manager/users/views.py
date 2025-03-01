@@ -7,20 +7,25 @@ from django.views.generic import (
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth import login
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 class UsersList(ListView):
     model = User
     template_name = 'users/users.html'
 
-class CreateUser(CreateView):
-    form_class = CustomUserCreationForm  # Используем кастомную форму
+class CreateUser(SuccessMessageMixin, CreateView):
+    form_class = CustomUserCreationForm
     template_name = 'users/create_user.html'
     success_url = reverse_lazy('login')
+    success_message = "Пользователь успешно зарегистрирован."
 
     def form_valid(self, form):
-        # Форма уже сохраняет first_name и last_name благодаря методу save в CustomUserCreationForm
-        return super().form_valid(form)
+        valid = super().form_valid(form)
+        user = form.save()
+        login(self.request, user)  # Вход сразу после регистрации
+        return valid
 
 class UserUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = User
