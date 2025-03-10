@@ -1,0 +1,9 @@
+{% load django_bootstrap5 %}
+
+{% block content %}
+<form method="post">
+    {% csfr_token %}
+    {% bootstrap_form form %}
+        <input class="btn btn-primary" type="submit" value="{% block button_value %}{% endblock %}">
+</form>
+{% endblock %}
