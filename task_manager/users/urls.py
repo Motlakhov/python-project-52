@@ -3,6 +3,8 @@ from django.contrib.auth.views import LoginView
 from . import views
 
 urlpatterns = [
+    path('', views.UsersList.as_view(), name='user-list'),
+
     # Маршрут для создания пользователя
     path('create/', views.CreateUser.as_view(), name='user-create'),
     
@@ -12,5 +14,4 @@ urlpatterns = [
     # Маршрут для удаления пользователя
     path('<int:pk>/delete/', views.UserDelete.as_view(), name='user-delete'),
 
-    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
 ]

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.views.generic import (
     ListView, CreateView, UpdateView, DeleteView, TemplateView
 )
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth import login
@@ -22,10 +22,9 @@ class CreateUser(SuccessMessageMixin, CreateView):
     success_message = "Пользователь успешно зарегистрирован."
 
     def form_valid(self, form):
-        valid = super().form_valid(form)
+        response = super().form_valid(form)
         user = form.save()
-        login(self.request, user)  # Вход сразу после регистрации
-        return valid
+        return response
 
 class UserUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = User

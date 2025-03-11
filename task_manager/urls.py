@@ -26,15 +26,7 @@ urlpatterns = [
     # Маршрут для списка пользователей
     path('users/', include('task_manager.users.urls')),
 
-    # # Маршрут для создания пользователя
-    # path('users/create/', views.CreateUser.as_view(), name='user-create'),
-    
-    # # Маршрут для редактирования пользователя
-    # path('users/<int:pk>/update/', views.UserUpdate.as_view(), name='user-update'),
-    
-    # # Маршрут для удаления пользователя
-    # path('users/<int:pk>/delete/', views.UserDelete.as_view(), name='user-delete'),
+    path('login/', views.CustomLoginView.as_view(template_name='login.html'), name='login'),
 
-    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', views.CustomLogoutView.as_view(), name='logout'),
 ]
