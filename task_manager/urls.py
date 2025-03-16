@@ -26,7 +26,7 @@ urlpatterns = [
     # Маршрут для списка пользователей
     path('users/', include('task_manager.users.urls')),
 
-    path('login/', views.CustomLoginView.as_view(template_name='login.html'), name='login'),
+    path('login/', views.CustomLoginView.as_view(), name='login'),
 
     path('logout/', views.CustomLogoutView.as_view(), name='logout'),
 ]

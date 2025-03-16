@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm
+from .forms import UserForm
 from django.contrib.auth.models import User
 from django.views.generic import (
     ListView, CreateView, UpdateView, DeleteView, TemplateView
@@ -11,20 +11,19 @@ from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
+LOGIN_URL = reverse_lazy('login')
+
 class UsersList(ListView):
     model = User
     template_name = 'users/users.html'
 
 class CreateUser(SuccessMessageMixin, CreateView):
-    form_class = CustomUserCreationForm
+    model = User
+    form_class = UserForm
     template_name = 'users/create_user.html'
     success_url = reverse_lazy('login')
     success_message = "Пользователь успешно зарегистрирован."
 
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        user = form.save()
-        return response
 
 class UserUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = User

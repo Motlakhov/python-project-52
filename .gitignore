@@ -8,4 +8,4 @@ coverage.xml
 *_cache/
 venv
 .env
-/__pycache__
+__pycache__/

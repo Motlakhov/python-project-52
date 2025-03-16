@@ -1,24 +1,16 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
-class CustomUserCreationForm(UserCreationForm):
-    def clean_username(self):
-        username = self.cleaned_data.get('username')
-        if self._meta.model.objects.exclude(pk=self.instance.pk). \
-                filter(username__iexact=username).exists():
-            self.add_error(
-                'username',
-                self.instance.unique_error_message(
-                    self._meta.model, ['username']
-                )
-            )
+class UserForm(UserCreationForm):
+    """Users form class."""
 
-        return username
+    class Meta(object):
+        """Meta class for user form."""
 
-    class Meta:
-        model = get_user_model()
-        fields = [
+        model = User
+        fields = (
             'first_name',
             'last_name',
             'username',
-        ]
+        )
