@@ -1,9 +1,13 @@
+{% extends 'base.html' %}
 {% load django_bootstrap5 %}
 
 {% block content %}
-<form method="post">
-    {% csfr_token %}
-    {% bootstrap_form form %}
-        <input class="btn btn-primary" type="submit" value="{% block button_value %}{% endblock %}">
-</form>
-{% endblock %}
+    <div class="container wrapper flex-grow-1">
+        <h1 class="my-4">{{ header }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% bootstrap_button button_text button_type="submit" button_class="btn btn-primary" %}
+        </form>
+    </div>
+{% endblock content %}

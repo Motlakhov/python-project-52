@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.views.generic import (
@@ -5,58 +6,39 @@ from django.views.generic import (
 )
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.utils.translation import gettext_lazy as _
+from .mixins import ObjectContextMixin
 
 def index(request):
     return render(request, 'index.html')
 
 
-# # Создание пользователя
-# class CreateUser(CreateView):
-#     form_class = UserCreationForm
-#     template_name = 'create_user.html'
-#     success_url = reverse_lazy('login')
-
-#     def form_valid(self, form):
-#         # Сначала создаем пользователя с использованием формы
-#         user = form.save()
-        
-#         # Теперь сохраняем имя и фамилию
-#         user.first_name = self.request.POST.get('first_name')
-#         user.last_name = self.request.POST.get('last_name')
-#         user.save()
-        
-#         return super().form_valid(form)
-
-# class UserUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-#     model = User
-#     fields = ['first_name', 'last_name']  # Только эти поля будут доступны для редактирования
-#     template_name = 'update_user.html'
-#     success_url = reverse_lazy('user-list')
-
-#     def test_func(self):
-#         """ Проверяем, что пользователь пытается изменить свою учетную запись """
-#         obj = self.get_object()
-#         return obj == self.request.user or self.request.user.is_superuser
-
-# class UserDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-#     model = User
-#     template_name = 'delete_user.html'
-#     success_url = reverse_lazy('user-list')
-
-    def test_func(self):
-        """ Проверяем, что пользователь пытается удалить свою учетную запись """
-        obj = self.get_object()
-        return obj == self.request.user or self.request.user.is_superuser
-
-
 class CustomLoginView(LoginView):
-    template_name = 'login.html'
-    redirect_authenticated_user = True  # Перенаправление уже залогиненного пользователя на главную страницу
-    next_page = 'index'
+    template_name = 'base_form.html'
+    next_page = reverse_lazy("index")
     success_message = _('You are logged in')
+    extra_context = {
+        "header": _("Login"),
+        "button_text": _("Log in"),
+    }
 
-class CustomLogoutView(LogoutView):
-    next_page = '/'  # После выхода перенаправляем на главную страницу
+class UserLogoutView(LogoutView):
+    next_page = reverse_lazy("index")
+
+    def dispatch(self, request, *args, **kwargs):
+        messages.info(request, _("You have logged out"))
+        return super().dispatch(request, *args, **kwargs)
+
+
+class CustomCreateView(SuccessMessageMixin, CreateView):
+    template_name = "base_form.html"
+
+class CustomUpdateView(SuccessMessageMixin, UpdateView):
+    template_name = "base_form.html"
+
+class CustomDeleteView(
+        ObjectContextMixin, SuccessMessageMixin, DeleteView):
+    template_name = "delete_form.html"

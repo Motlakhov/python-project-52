@@ -1,12 +1,7 @@
 {% extends "base.html" %}
+{% load django_bootstrap5 %}
 
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
+    {% bootstrap_messages %}
 
     {% block heading %}
     <h1 class="my-4"> 
