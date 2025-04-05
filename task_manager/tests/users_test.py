@@ -19,7 +19,7 @@ class TestUsers(TestCase):
         self.assertNotContains(response, "First_name_3 Last_name_3")
 
         response = self.client.post(
-            reverse("user_create"), data=self.test_user
+            reverse("user-create"), data=self.test_user
         )
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response["Location"], reverse("login"))
@@ -27,11 +27,11 @@ class TestUsers(TestCase):
         response = self.client.get(reverse("users"))
         self.assertContains(response, "First_name_3 Last_name_3")
 
-        response = self.client.get(reverse("user_update", kwargs={"pk": 1}))
+        response = self.client.get(reverse("user-update", kwargs={"pk": 1}))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response["Location"], reverse("login"))
 
-        response = self.client.get(reverse("user_delete", kwargs={"pk": 1}))
+        response = self.client.get(reverse("user-delete", kwargs={"pk": 1}))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response["Location"], reverse("login"))
 
@@ -41,14 +41,14 @@ class TestUsers(TestCase):
         )
         self.test_user["last_name"] = "Last_name_changed_3"
         response = self.client.post(
-            reverse("user_update", kwargs={"pk": 1}), data=self.test_user
+            reverse("user-update", kwargs={"pk": 1}), data=self.test_user
         )
         self.assertEqual(response.status_code, 302)
 
         response = self.client.get(reverse("users"))
         self.assertContains(response, "First_name_3 Last_name_changed_3")
 
-        response = self.client.post(reverse("user_delete", kwargs={"pk": 1}))
+        response = self.client.post(reverse("user-delete", kwargs={"pk": 1}))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response["Location"], reverse("users"))
 
