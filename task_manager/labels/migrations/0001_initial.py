@@ -12,15 +12,15 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Status',
+            name='Label',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200, unique=True, verbose_name='Name')),
+                ('name', models.CharField(max_length=150, unique=True, verbose_name='Name')),
                 ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Creation date')),
             ],
             options={
-                'verbose_name': 'Status',
-                'verbose_name_plural': 'Statuses',
+                'verbose_name': 'Label',
+                'verbose_name_plural': 'Labels',
             },
         ),
     ]

@@ -46,11 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_bootstrap5',
+    "django_filters",
     'task_manager',
     'task_manager.users',
     'task_manager.statuses',
     'task_manager.tasks',
-    'django_bootstrap5',
+    'task_manager.labels',
 ]
 
 MIDDLEWARE = [
@@ -152,3 +154,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/login'
+
+AUTH_USER_MODEL = 'users.User'

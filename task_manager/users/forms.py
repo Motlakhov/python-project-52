@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
-# from .models import User
+from .models import User
 
 def get_widget(placeholder):
     return forms.PasswordInput(

@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
 # from django.contrib.auth.models import User
 from task_manager.users.models import User
-from django.views.generic import (
-    ListView, CreateView, UpdateView, DeleteView, TemplateView
-)
+from django.views.generic import ListView
 from task_manager.mixins import (
     CustomLoginMixin,
     DeleteProtectionMixin,

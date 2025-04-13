@@ -17,3 +17,13 @@ class User(AbstractUser):
 #     return f'{self.first_name} {self.last_name}'
 
 # get_user_model().add_to_class('str', get_full_name)
+
+# class CustomUser(User):
+#     class Meta:
+#         proxy = True
+
+#     def full_name(self):
+#         return f"{self.first_name} {self.last_name}"
+
+#     def __str__(self):
+#         return self.full_name()
