@@ -5,6 +5,7 @@ dist/
 .venv
 .venv/
 .coverage
+.coverage/
 coverage.xml
 *_cache/
 venv
