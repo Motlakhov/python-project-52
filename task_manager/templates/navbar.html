@@ -23,22 +23,26 @@
         {% endif %}
     </ul>
     
-  <ul class="navbar-nav">
+    <ul class="navbar-nav">
       {% if user.is_authenticated %}
-      <form action="{% url 'logout' %}" method="post">
-              {% csrf_token %}
-        <input type="hidden" name="" value="">
-        <input class="btn nav-link" type="submit" value="{% trans 'Logout' %}">
-      </form>
+      <li class="nav-item">
+        <form action="{% url 'logout' %}" method="post" class="d-inline align-items-center">
+          {% csrf_token %}
+          <input class="btn nav-link" type="submit" value="{% translate 'Logout' %}">
+        </form>
+      </li>
       {% else %}
-    
+    </ul>
+
+  <ul class="navbar-nav ml-auto">  
     <li class="nav-item">
       <a class="nav-link" href="{% url 'login' %}">Вход</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{% url 'user-create' %}">Регистрация</a>
     </li>
-    {% endif %}
   </ul>
+    {% endif %}
+  
   </div>
 </nav>
