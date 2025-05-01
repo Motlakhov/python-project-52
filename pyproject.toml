@@ -17,7 +17,7 @@ dependencies = [
 [tool.flake8]
 exclude = [
     "migrations",
-    "settings.py"
+    "settings.py",
 ]
 
 [build-system]
