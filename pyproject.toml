@@ -12,6 +12,7 @@ dependencies = [
     "gunicorn>=23.0.0",
     "python-dotenv>=1.0.1",
     "django-filter>=25.1",
+    "psycopg>=3.2.7,<4.0.0",
 ]
 
 [tool.flake8]
