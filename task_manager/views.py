@@ -16,7 +16,7 @@ def index(request):
     return render(request, 'index.html')
 
 
-class CustomLoginView(LoginView):
+class CustomLoginView(SuccessMessageMixin, LoginView):
     template_name = 'base_form.html'
     next_page = reverse_lazy("index")
     success_message = _('You are logged in')
@@ -24,6 +24,7 @@ class CustomLoginView(LoginView):
         "header": _("Login"),
         "button_text": _("Log in"),
     }
+
 
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy("index")
