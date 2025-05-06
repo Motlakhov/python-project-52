@@ -149,6 +149,6 @@ REST_FRAMEWORK = {
     ),
 }
 
-# LOCALE_PATHS = (
-#     os.path.join(BASE_DIR, 'locale'),
-# )
+
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
