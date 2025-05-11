@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
+
 class Label(models.Model):
     name = models.CharField(
         verbose_name=_("Name"),

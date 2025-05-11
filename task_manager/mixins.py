@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
+
 class CustomLoginMixin(LoginRequiredMixin):
     login_url = "login"
 
@@ -15,7 +16,8 @@ class CustomLoginMixin(LoginRequiredMixin):
             return redirect(self.login_url)
 
         return super().dispatch(request, *args, **kwargs)
-    
+
+
 class PermitModifyUserMixin(UserPassesTestMixin):
     def test_func(self):
         return self.get_object().id == self.request.user.id
@@ -36,6 +38,7 @@ class DeleteProtectionMixin:
         except ProtectedError:
             messages.error(request, self.protected_message)
             return redirect(self.protected_url)
+
 
 class ObjectContextMixin:
     def get_context_data(self, **kwargs):

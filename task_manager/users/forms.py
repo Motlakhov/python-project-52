@@ -1,10 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
-
 from .models import User
+
 
 def get_widget(placeholder):
     return forms.PasswordInput(
@@ -26,6 +24,7 @@ password2 = forms.CharField(
     help_text=_("To confirm, please enter your password again"),
 )
 
+
 class UserMeta:
     model = User
     fields = (
@@ -35,6 +34,7 @@ class UserMeta:
         "password1",
         "password2",
     )
+
 
 class RegisterUserForm(UserCreationForm):
     password1 = password1

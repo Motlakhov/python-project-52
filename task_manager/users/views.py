@@ -1,5 +1,3 @@
-from django.shortcuts import render, redirect
-# from django.contrib.auth.models import User
 from task_manager.users.models import User
 from django.views.generic import ListView
 from task_manager.mixins import (
@@ -12,21 +10,19 @@ from task_manager.views import (
     CustomDeleteView,
     CustomUpdateView,
 )
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth import login
-from django.contrib import messages
-from django.contrib.messages.views import SuccessMessageMixin
 from .forms import RegisterUserForm, UpdateUserForm
 
+
 LOGIN_URL = reverse_lazy('login')
+
 
 class UsersList(ListView):
     model = User
     template_name = 'users/users.html'
     context_object_name = "users"
+
 
 class UserCreateView(CustomCreateView):
     model = User
@@ -50,6 +46,7 @@ class UserUpdateView(
         "header": _("Update user"),
         "button_text": _("Update"),
     }
+
 
 class UserDeleteView(
         CustomLoginMixin, PermitModifyUserMixin,
