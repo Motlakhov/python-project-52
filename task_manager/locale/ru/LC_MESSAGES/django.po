@@ -94,7 +94,7 @@ msgstr "Вы не авторизованы! Пожалуйста, выполни
 
 #: task_manager/mixins.py:24
 msgid "You don't have permissions to modify another user"
-msgstr "У Вас нет прав для изменения другого пользователя"
+msgstr "У вас нет прав для изменения другого пользователя"
 
 #: task_manager/statuses/models.py:21 task_manager/tasks/models.py:37
 #: task_manager/templates/tasks/show.html:30
