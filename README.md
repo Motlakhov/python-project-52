@@ -1,6 +1,6 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Motlakhov/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Motlakhov/python-project-52/actions)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?id=Motlakhov_python-project-52&metric=coverage)]
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Motlakhov_python-project-52&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Motlakhov_python-project-52)
 
 
 Task manager - финальный проект, разработанный в рамках обучения на курсе Хекслет. Это сайт на основе Djangо, который позволяет распределять задачи среди пользователей и следить за их выполнением.
@@ -15,7 +15,7 @@ Task manager - финальный проект, разработанный в р
 
 1. Склонируйте репозиторий с проектом на ваше локальное устройство:
 ```
-git clone https://github.com/ShcherbinaDmitry/python-project-52.git
+git clone https://github.com/Motlakhov/python-project-52.git
 ```
 2. Перейдите в директорию проекта:
 ```
